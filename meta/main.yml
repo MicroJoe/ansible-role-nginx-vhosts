@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Romain Porte
+  description: Handle enabled vhosts for nginx
+  license: MIT
+
+  min_ansible_version: 2.2
+
+  platforms:
+  - name: Debian
+    versions:
+      - stretch
+
+  galaxy_tags:
+    - nginx
+    - debian
+    - vhost
+
+dependencies: []

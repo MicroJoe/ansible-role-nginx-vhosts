@@ -1,0 +1,27 @@
+---
+# tasks file for MicroJoe.nginx-vhosts
+
+- name: List enabled vhosts
+  find:
+    paths: "/etc/nginx/sites-enabled"
+    patterns: "*"
+    file_type: link
+  register: result
+
+- name: Disable non-required vhosts
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ result.files }}"
+  when: item.path|basename not in vhosts_enabled
+  notify: restart nginx
+  loop_control:
+    label: "{{ item.path|basename }}"
+
+- name: Enable required vhosts
+  file:
+    dest: "/etc/nginx/sites-enabled/{{ item }}"
+    src: "/etc/nginx/sites-available/{{ item }}"
+    state: link
+  with_items: "{{ vhosts_enabled }}"
+  notify: restart nginx
