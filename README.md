@@ -1,6 +1,8 @@
 nginx vhosts role
 =================
 
+[![Build Status](https://travis-ci.org/MicroJoe/ansible-role-nginx-vhosts.svg?branch=master)](https://travis-ci.org/MicroJoe/ansible-role-nginx-vhosts)
+
 Activate and deactivate nginx vhosts using Ansible.
 
 Role Variables
